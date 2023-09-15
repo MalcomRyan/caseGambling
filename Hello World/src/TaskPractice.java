@@ -34,7 +34,7 @@ public class TaskPractice extends JFrame {
 	private static double rebirthcost = 1;
 	private static double rebirthcostincrease = 1;
 	private static double rebirthboost = 1;
-	
+	//this is con
 	public static void main(String[] args) {
 		  f = new JFrame("Professional Case Gambling Software");
 	        f.setSize(500, 500);
