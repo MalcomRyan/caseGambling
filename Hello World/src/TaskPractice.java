@@ -24,6 +24,7 @@ public class TaskPractice extends JFrame {
     static JButton b2;
     static JButton b3;
     static JLabel l;
+    static JTextField textBox;
 	private static double money = 100;
 	private static double boostprice = 50;
 	private static double lessprice = 50;
@@ -34,7 +35,7 @@ public class TaskPractice extends JFrame {
 	private static double rebirthcost = 1;
 	private static double rebirthcostincrease = 1;
 	private static double rebirthboost = 1;
-	//this is con
+	
 	public static void main(String[] args) {
 		  f = new JFrame("Professional Case Gambling Software");
 	        f.setSize(500, 500);
@@ -46,8 +47,8 @@ public class TaskPractice extends JFrame {
 	        b2 = new JButton("Open Intermediate");
 	        b3 = new JButton("Open End");
 	        l = new JLabel("Money: " + money);
-	       
-	        
+	        textBox = new JTextField("Enter Response Here");
+	        textBox.selectAll();
 	        ///////////////////////////////////////////////////////////////////          
 	        b.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
@@ -95,13 +96,15 @@ public class TaskPractice extends JFrame {
 	        j.add(b);
 	        j.add(b2);
 	        j.add(b3);
-
 	        f.add(j, BorderLayout.NORTH);
 	        f.add(l, BorderLayout.CENTER);
+	        //conlan added this textbox \/
+	        f.add(textBox, BorderLayout.SOUTH);
 	        l.setBounds(10,30,40,10);
 
 	        f.setLocationRelativeTo(null);
 	        f.setVisible(true);
+	        
 		gamblego();
         // frame base
        
