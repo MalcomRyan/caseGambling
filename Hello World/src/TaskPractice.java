@@ -25,16 +25,18 @@ public class TaskPractice extends JFrame {
     static JButton b3;
     static JLabel l;
     static JTextField textBox;
-	private static double money = 100;
-	private static double boostprice = 50;
-	private static double lessprice = 50;
-	private static double casecost = 20;
-	private static double moneyoutcome = 1;
-	private static double moneyboost = 1;
-	private static int rebirthamount = 0;
-	private static double rebirthcost = 1;
-	private static double rebirthcostincrease = 1;
-	private static double rebirthboost = 1;
+	private static double money = 100; // main money amount
+	private static double boostPrice = 50; // the price for an upgrade in shop that increases
+										// money gained from a crate
+	private static double lessPrice = 50; // the price for an upgrade that decreases the cost 
+											// of cases
+	private static double caseCost = 20; // the base cost for basic case
+	private static double moneyOutcome = 1; // some variable. not sure.
+	private static double moneyBoost = 1; // some variable.
+	private static int rebirthAmount = 0; // amount of current rebirhts
+	private static double rebirthCost = 1; // cost it takes to buy another rebirth
+	private static double rebirthCostIncrease = 1; //variable that increases rebirth cost
+	private static double rebirthBoost = 1; // the boost of rebirthing onto your money gain
 	
 	public static void main(String[] args) {
 		  f = new JFrame("Professional Case Gambling Software");
@@ -52,22 +54,22 @@ public class TaskPractice extends JFrame {
 	        ///////////////////////////////////////////////////////////////////          
 	        b.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	if (money >=casecost) {
-	            		money -= casecost;
+	            	if (money >=caseCost) {
+	            		money -= caseCost;
 	        			Random random = new Random();
 	        			int randomnumber = random.nextInt(10) + 1;
 	        			System.out.println("you got the number " + (randomnumber));
 	        			if (randomnumber == 10) {
 	        				System.out.println("you just got a the rarest number");
-	        				money += (90 * moneyoutcome * rebirthboost);
+	        				money += (90 * moneyOutcome * rebirthBoost);
 
 	        			} else if (randomnumber == 1 || randomnumber == 2 || randomnumber == 3 || randomnumber == 4
 	        					|| randomnumber == 5 | randomnumber == 6 || randomnumber == 7) {
 	        				System.out.println("this is a common number");
-	        				money += (10 * moneyoutcome * rebirthboost);
+	        				money += (10 * moneyOutcome * rebirthBoost);
 	        			} else {
 	        				System.out.println("thats a pretty rare number");
-	        				money += (25 * moneyoutcome * rebirthboost);
+	        				money += (25 * moneyOutcome * rebirthBoost);
 
 	        			}
 	            	}
@@ -121,31 +123,31 @@ public class TaskPractice extends JFrame {
 	
 	public static void Reset() {
 
-		rebirthboost += .25;
-		rebirthcost *= (5 * rebirthcostincrease);
-		moneyboost = 1;
-		moneyoutcome = 1;
+		rebirthBoost += .25;
+		rebirthCost *= (5 * rebirthCostIncrease);
+		moneyBoost = 1;
+		moneyOutcome = 1;
 		money = 200;
-		boostprice = 50;
-		lessprice = 50;
-		casecost = 20;
-		rebirthamount += 1;
-		rebirthcostincrease += 2.5;
-		System.out.println("Congrats, you successfully rebirthed! You now have a boost of "+(rebirthboost)+(" on any earnings."));
+		boostPrice = 50;
+		lessPrice = 50;
+		caseCost = 20;
+		rebirthAmount += 1;
+		rebirthCostIncrease += 2.5;
+		System.out.println("Congrats, you successfully rebirthed! You now have a boost of "+(rebirthBoost)+(" on any earnings."));
 		gamblego();
 		
 	}
 	public static void Rebirth() {
-		    System.out.println("Welcome to rebirth, you are currently at "+(rebirthamount)+(" rebirths."));
+		    System.out.println("Welcome to rebirth, you are currently at "+(rebirthAmount)+(" rebirths."));
 		    System.out.println("Rebirthing Deletes your current progress and starts you anew, with a slight boost to make you progress faster.");
-		    System.out.println("Would you like to rebirth? It will cost " +(rebirthcost));
+		    System.out.println("Would you like to rebirth? It will cost " +(rebirthCost));
 		    Scanner scanner = new Scanner(System.in);
 		    String response = scanner.nextLine();
 		    if (response.equals("y")) {
 		    	System.out.println("Are you SURE? This will delete all upgrades and cash you currently own.");
 		    	System.out.println("Type 'I Am Sure.' if you want to continue.");
 		    	String confirmation = scanner.nextLine();
-		    	if (confirmation.equals("I Am Sure.")&&(money>=rebirthcost)){
+		    	if (confirmation.equals("I Am Sure.")&&(money>=rebirthCost)){
 		    		Reset();
 		    	}
 		    		else {
@@ -164,7 +166,7 @@ public class TaskPractice extends JFrame {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Do you want to Gamble?(G) Or go to Shop(S)? Or maybe Rebirth.");
 		String response = scanner.nextLine();
-		if (response.equals("G") && (money >= casecost)) { // syntax for or is || and syntax for and is &&.
+		if (response.equals("G") && (money >= caseCost)) { // syntax for or is || and syntax for and is &&.
 			cases();
 		}
 		else if (response.equals("S")) {
@@ -183,23 +185,23 @@ public class TaskPractice extends JFrame {
 		System.out.println("What case? Basic ('b'), x, z");
 		String whatcase = casecheck.nextLine();
 		if (whatcase.equals("b")) {
-			money -= casecost;
+			money -= caseCost;
 			Random random = new Random();
 			int randomnumber = random.nextInt(10) + 1;
 			System.out.println("you got the number " + (randomnumber));
 			if (randomnumber == 10) {
 				System.out.println("you just got a the rarest number");
-				money += (150 * moneyoutcome * rebirthboost);
+				money += (150 * moneyOutcome * rebirthBoost);
 				gamblego();
 
 			} else if (randomnumber == 1 || randomnumber == 2 || randomnumber == 3 || randomnumber == 4
 					|| randomnumber == 5 | randomnumber == 6 || randomnumber == 7) {
 				System.out.println("this is a common number");
-				money += (10 * moneyoutcome * rebirthboost);
+				money += (10 * moneyOutcome * rebirthBoost);
 				gamblego();
 			} else {
 				System.out.println("thats a pretty rare number");
-				money += (20 * moneyoutcome * rebirthboost);
+				money += (20 * moneyOutcome * rebirthBoost);
 				gamblego();
 
 			}
@@ -214,20 +216,20 @@ public class TaskPractice extends JFrame {
 		String shopresponse = shopscannerone.nextLine();
 		if (shopresponse.equals("Buy")) {
 			System.out.println("Buy : Luck | Cost | ");
-			System.out.println("Cost : "+(boostprice)+(lessprice));
+			System.out.println("Cost : "+(boostPrice)+(lessPrice));
 			String buyresponse = shopscannerone.nextLine();
-			if (buyresponse.equals("Luck")&&(money>=boostprice)) {
-				money -= boostprice;
-				moneyoutcome = (moneyboost + 0.1);
-				boostprice *= 2;
+			if (buyresponse.equals("Luck")&&(money>=boostPrice)) {
+				money -= boostPrice;
+				moneyOutcome = (moneyBoost + 0.1);
+				boostPrice *= 2;
 				System.out.println("Bought upgrade");
 				shop();
 
 			}
-			else if (buyresponse.equals("Cost")&&(money>=lessprice)) {
-				money -= lessprice;
-				casecost -= 2;
-				lessprice *= 2;
+			else if (buyresponse.equals("Cost")&&(money>=lessPrice)) {
+				money -= lessPrice;
+				caseCost -= 2;
+				lessPrice *= 2;
 				System.out.println("Bought upgrade");
 				shop();
 			}
