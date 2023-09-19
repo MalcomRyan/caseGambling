@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -25,11 +26,15 @@ public class TaskPractice extends JFrame {
     static JButton b3;
     static JLabel l;
     static JTextField textBox;
+    static JButton bShop;
 	private static double money = 100; // main money amount
 	private static double boostPrice = 50; // the price for an upgrade in shop that increases
 										// money gained from a crate
 	private static double lessPrice = 50; // the price for an upgrade that decreases the cost 
-											// of cases
+	private static double caseMedCost = 200; // the base cost for medium case
+	private static double caseEndCost = 100000; // the base cost for medium case
+
+			// of cases
 	private static double caseCost = 20; // the base cost for basic case
 	private static double moneyOutcome = 1; // some variable. not sure.
 	private static double moneyBoost = 1; // some variable.
@@ -49,10 +54,11 @@ public class TaskPractice extends JFrame {
 	        b2 = new JButton("Open Intermediate");
 	        b3 = new JButton("Open End");
 	        l = new JLabel("Money: " + money);
+	        bShop = new JButton("Shop");
 	        textBox = new JTextField("Enter Response Here");
 	        textBox.selectAll();
 	        ///////////////////////////////////////////////////////////////////          
-	        b.addActionListener(new ActionListener() {
+	        b.addActionListener(new ActionListener() { // start costs 20
 	            public void actionPerformed(ActionEvent e) {
 	            	if (money >=caseCost) {
 	            		money -= caseCost;
@@ -77,33 +83,72 @@ public class TaskPractice extends JFrame {
         			l.setText("Money: " + money);
         	System.out.println("hi");	            }
 	        });
-	        b2.addActionListener(new ActionListener() {
+	        b2.addActionListener(new ActionListener() { // med costs 200
 	            public void actionPerformed(ActionEvent e) {
 	            	System.out.println("button 2 pressed");
-	            	
+	            	if (money >=caseMedCost) {
+	            		money -= caseMedCost;
+	        			Random random = new Random();
+	        			int randomnumber = random.nextInt(10) + 1;
+	        			System.out.println("you got the number " + (randomnumber));
+	        			if (randomnumber == 10) {
+	        				System.out.println("you just got a the rarest number");
+	        				money += (900 * moneyOutcome * rebirthBoost);
+
+	        			} else if (randomnumber == 1 || randomnumber == 2 || randomnumber == 3 || randomnumber == 4
+	        					|| randomnumber == 5 | randomnumber == 6 || randomnumber == 7) {
+	        				System.out.println("this is a common number");
+	        				money += (100 * moneyOutcome * rebirthBoost);
+	        			} else {
+	        				System.out.println("thats a pretty rare number");
+	        				money += (250 * moneyOutcome * rebirthBoost);
+
+	        			}
+	            	}
+	        		
+        			l.setText("Money: " + money);
 	            }
 	           });
 	        b3.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
+	            public void actionPerformed(ActionEvent e) { // final case costs 100k
 	            	System.out.println("button 3 pressed");
-	            	
+	            	if (money >=caseEndCost) {
+	            		money -= caseEndCost;
+	        			Random random = new Random();
+	        			int randomnumber = random.nextInt(10) + 1;
+	        			System.out.println("you got the number " + (randomnumber));
+	        			if (randomnumber == 10) {
+	        				System.out.println("you just got a the rarest number");
+	        				money += (2000000 * moneyOutcome * rebirthBoost); // 2 mil for rarest
+
+	        			} else if (randomnumber == 1 || randomnumber == 2 || randomnumber == 3 || randomnumber == 4
+	        					|| randomnumber == 5 | randomnumber == 6 || randomnumber == 7) {
+	        				System.out.println("this is a common number");
+	        				money += (1 * moneyOutcome * rebirthBoost); // 1 for most common
+	        			} else {
+	        				System.out.println("thats a pretty rare number");
+	        				money += (1 * moneyOutcome * rebirthBoost);
+
+	        			}
+	            	}
+	        		
+        			l.setText("Money: " + money);
 	            }
 	           });
 	        ///////////////////////////////////////////////////////////////////
 
-	        
-	        
-	        
-	        
 	        j.add(b);
 	        j.add(b2);
 	        j.add(b3);
+	       // j.add(bShop);
 	        f.add(j, BorderLayout.NORTH);
 	        f.add(l, BorderLayout.CENTER);
+	        bShop.setBounds(10,10,10,10);
+	       // f.add(bShop);
 	        //conlan added this textbox \/
 	        f.add(textBox, BorderLayout.SOUTH);
 	        l.setBounds(10,30,40,10);
-
+	        
 	        f.setLocationRelativeTo(null);
 	        f.setVisible(true);
 	        
